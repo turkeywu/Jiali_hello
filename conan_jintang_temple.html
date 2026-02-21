@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>名偵探柯南調查筆記：佳里金唐殿四大謎團</title>
+    <style>
+        /* --- 全局設定與柯南主題色系 --- */
+        :root {
+            --conan-blue: #0056b3;
+            --conan-red: #d92525;
+            --conan-yellow: #fecb00;
+            --bg-paper: #f4f1ea;
+            --text-dark: #333;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', '微軟正黑體', sans-serif;
+            background-color: #2c3e50;
+            background-image: radial-gradient(#34495e 1px, transparent 1px);
+            background-size: 20px 20px;
+            margin: 0;
+            padding: 20px;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 95%;
+            margin: 0 auto;
+            background-color: var(--bg-paper);
+            border: 4px solid var(--conan-blue);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- 標題區 --- */
+        header {
+            background: linear-gradient(135deg, var(--conan-blue), #003366);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            border-bottom: 3px solid var(--conan-red);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-style: italic;
+            color: var(--conan-yellow);
+        }
+
+        .magnify-icon {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 3em;
+            transform: rotate(-15deg);
+            opacity: 0.8;
+        }
+
+        /* --- 互動頁籤導航 --- */
+        .tabs {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #ddd;
+        }
+
+        .tab-link {
+            flex: 1;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #666;
+            background-color: #e0e0e0;
+            transition: all 0.3s ease;
+            border-right: 1px solid #ccc;
+            position: relative;
+        }
+
+        .tab-link:last-child {
+            border-right: none;
+        }
+
+        .tab-link:hover {
+            background-color: #d0d0d0;
+            color: var(--conan-blue);
+        }
+
+        .tab-link.active {
+            background-color: var(--bg-paper);
+            color: var(--conan-blue);
+            border-bottom: none;
+            box-shadow: inset 0 3px 0 var(--conan-red);
+        }
+
+        /* --- 內容區塊 --- */
+        .tab-content {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            /* 重要：這讓左側的 evidence-group 和右側文字區頂部對齊 */
+            align-items: flex-start; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 新增：左側證據群組 (包含大圖與小貼圖) --- */
+        .evidence-group {
+            flex: 1 1 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* 大圖與小圖的間距 */
+        }
+
+        /* --- 圖像顯示區 --- */
+        .evidence-image {
+            width: 100%;
+            aspect-ratio: 16 / 9; 
+            background-image: url('image_0.png'); 
+            background-size: 200% 200%; 
+            background-repeat: no-repeat;
+            
+            border: 3px solid var(--text-dark);
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .evidence-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* 針對四個角落的切割定位 */
+        #img-history { background-position: 0% 0%; }
+        #img-religion { background-position: 100% 0%; }
+        #img-art { background-position: 0% 100%; }
+        #img-parade { background-position: 100% 100%; }
+
+        /* --- 新增：下方三個貼圖連結樣式 --- */
+        .sticker-row {
+            display: flex;
+            flex-direction: column; /* 改為垂直排列 */
+            gap: 15px; /* 增加貼圖之間的間距 */
+            }
+
+        .clue-sticker {
+            flex: 1;
+            background-color: #fff;
+            border: 2px dashed #999;
+            border-radius: 8px;
+            height: 50px; /* 固定高度 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            color: var(--conan-blue);
+            font-size: 0.9em;
+            font-weight: bold;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            }
+      
+
+        .clue-sticker:hover {
+            background-color: var(--conan-yellow);
+            color: var(--text-dark);
+            border-style: solid;
+            border-color: var(--text-dark);
+            transform: translateY(-3px) rotate(2deg);
+        }
+
+        .clue-sticker::before {
+            content: '📎';
+            position: absolute;
+            top: 2px;
+            right: 5px;
+            font-size: 1.2em;
+            opacity: 0.5;
+        }
+
+        /* --- 調查報告文字區 --- */
+        .investigation-report {
+            flex: 1 1 350px; 
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid var(--conan-red);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .report-title {
+            color: var(--conan-blue);
+            border-bottom: 2px dashed #ccc;
+            padding-bottom: 10px;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .report-title::before {
+            content: '📁 ';
+            margin-right: 10px;
+        }
+
+        .speech-bubble {
+            background-color: var(--conan-yellow);
+            color: var(--text-dark);
+            padding: 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            position: relative;
+            margin-bottom: 20px;
+            display: inline-block;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: var(--conan-yellow) transparent;
+        }
+
+        .clue-box h4 {
+            background-color: #e9ecef;
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            color: #d92525;
+        }
+
+        .clue-box p {
+            margin-top: 5px;
+            line-height: 1.6;
+        }
+
+        /* --- 頁尾總結 --- */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-truth {
+            font-size: 1.3em;
+            color: var(--conan-yellow);
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- 響應式設計調整 --- */
+        @media (max-width: 768px) {
+            .tab-link {
+                font-size: 0.9em;
+                padding: 10px 5px;
+            }
+            .tab-content.active {
+                flex-direction: column;
+            }
+            .evidence-group {
+                width: 100%;
+                flex: none;
+            }
+            .evidence-image {
+                width: 100%;
+            }
+             .magnify-icon {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="magnify-icon">🔍</div>
+        <h1>🕵️‍♂️ 柯南的調查筆記：佳里金唐殿四大謎團</h1>
+        <p>真相永遠只有一個！快打開檔案夾，解開國寶級的秘密！</p>
+    </header>
+
+    <ul class="tabs">
+        <li class="tab-link active" onclick="openTab(event, 'case1')">📂 檔案一：歷史謎團</li>
+        <li class="tab-link" onclick="openTab(event, 'case2')">📂 檔案二：信仰謎團</li>
+        <li class="tab-link" onclick="openTab(event, 'case3')">📂 檔案三：藝術謎團</li>
+        <li class="tab-link" onclick="openTab(event, 'case4')">📂 檔案四：蕭壟香謎團</li>
+    </ul>
+
+    <div id="case1" class="tab-content active">
+        <div class="evidence-group">
+            <div class="evidence-image" id="img-history" title="柯南研究蕭壟古石碑"></div>
+            
+        </div>
+        
+        <div class="investigation-report">
+            <h2 class="report-title">調查報告：從荒地到賜匾的傳奇</h2>
+            <div class="speech-bubble">哼，這裡的味道...是歷史的塵埃！時光彷彿倒流回清朝了！</div>
+            
+            <div class="clue-box">
+                <h4>案件起源（1698年）</h4>
+                <p>早在清康熙37年，先民在草叢中發現神祕的「玉勅代天巡狩」令牌。大家視為神蹟，搭建草寮供奉，這就是金唐殿的前身！</p>
+            </div>
+            <div class="clue-box">
+                <h4>關鍵線索「蕭壟」</h4>
+                <p>這裡是平埔族西拉雅族四大社之一的「蕭壟社」故地。這不只是漢人的廟，更是原漢融合的歷史見證。</p>
+            </div>
+            <div class="clue-box">
+                <h4>皇室認證</h4>
+                <p>乾隆年間因協助平亂有功，皇帝「御賜」了「旌義」匾額，並正式賜名「金唐殿」。這是國家級的認證啊！</p>
+            </div>
+            <div class="clue-box" style="border-top: 2px solid #eee; padding-top: 10px;">
+                <strong>現況判定：</strong> 經過多次修建，現為市定古蹟，歷史價值極高！
+            </div>
+        </div>
+    </div>
+
+    <div id="case2" class="tab-content">
+        <div class="evidence-group">
+            <div class="evidence-image" id="img-religion" title="柯南與三府千歲守護佳里區"></div>
+            <div class="sticker-row">
+                <a href="#" class="clue-sticker"><img src="jintan01.png" alt="王爺<br>神像" style="width: 100%; height: 100%"; object-fit: cover;>
+    </a>
+                <a href="#" class="clue-sticker">筊杯<br>紀錄</a>
+                <a href="#" class="clue-sticker">平安符<br>特寫</a>
+            </div>
+        </div>
+
+        <div class="investigation-report">
+            <h2 class="report-title">調查報告：代天巡狩的神聖力量</h2>
+            <div class="speech-bubble">這股強大的氣場...是守護整個地區的神聖力量！</div>
+            
+            <div class="clue-box">
+                <h4>主要神明（代天巡狩）</h4>
+                <p>這裡供奉的是朱、雷、殷三府千歲。祂們代表上天來人間巡視、驅除瘟疫與災厄，權力非常大！</p>
+            </div>
+            <div class="clue-box">
+                <h4>同夥...咳，配祀神名單</h4>
+                <p>除了三位王爺，還有金府千歲、蕭府千歲，以及慈悲的觀音佛祖和註生娘娘。求平安、求子、求健康都能受理！</p>
+            </div>
+            <div class="clue-box">
+                <h4>轄區範圍</h4>
+                <p>金唐殿是「蕭壟十七角頭」的信仰中心。整個佳里地區居民心靈的寄託，遇大事都會來此擲筊問卜。</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="case3" class="tab-content">
+        <div class="evidence-group">
+            <div class="evidence-image" id="img-art" title="柯南驚嘆屋頂上的剪黏藝術"></div>
+            <div class="sticker-row">
+                <a href="#" class="clue-sticker"><img src="jintan4.png" 剪黏</a>
+                <a href="#" class="clue-sticker">交趾陶<br>特寫</a>
+                <a href="#" class="clue-sticker">大師<br>簽名</a>
+            </div>
+        </div>
+
+        <div class="investigation-report">
+            <h2 class="report-title">調查報告：藏在屋頂上的國寶密碼</h2>
+            <div class="speech-bubble">（推眼鏡）原來如此...屋頂上藏著驚人的藝術機關！</div>
+            
+            <div class="clue-box">
+                <h4>剪黏大師何金龍</h4>
+                <p>發現極珍貴線索！這裡擁有全台灣最完整的「何金龍」大師剪黏作品。</p>
+            </div>
+            <div class="clue-box">
+                <h4>特殊手法「糯米尪仔」</h4>
+                <p>這些剪黏是用糯米、黑糖、石灰調製的古法灰泥黏貼！人物表情細膩，衣服裙襬飛揚，是台灣剪黏藝術的巔峰。</p>
+            </div>
+            <div class="clue-box">
+                <h4>葉王交趾陶</h4>
+                <p>還保存了台灣交趾陶第一把交椅——「葉王」的作品。這是博物館等級的寶物！</p>
+            </div>
+             <div class="clue-box">
+                <h4>宏大必殺技「毛紹」</h4>
+                <p>匾額字體蒼勁有力，據說是用「茅草束」或特殊筆法寫成，氣勢磅礡。</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="case4" class="tab-content">
+        <div class="evidence-group">
+            <div class="evidence-image" id="img-parade" title="穿著古裝的柯南騎在百足真人上"></div>
+            
+        </div>
+
+        <div class="investigation-report">
+            <h2 class="report-title">調查報告：世界紀錄級的百足真人</h2>
+            <div class="speech-bubble">太壯觀了！這簡直是一條守護土地的巨龍！</div>
+            
+            <div class="clue-box">
+                <h4>發生時間：蕭壟香</h4>
+                <p>這個大事件每三年才發生一次（逢子、卯、午、酉年），被稱為「蕭壟香」，是南瀛五大香科之一！</p>
+            </div>
+            <div class="clue-box" style="background-color: #fff3cd; border: 2px solid #ffc107;">
+                <h4 style="color: #856404;">⭐ 核心證據「百足真人」</h4>
+                <p>最震驚的發現！這個蜈蚣陣曾創下金氏世界紀錄。由108位小朋友扮演天罡地煞星君，<strong>完全靠人力扛抬</strong>，是全台最長、最壯觀的人力蜈蚣陣！</p>
+            </div>
+            <div class="clue-box">
+                <h4>儀式目的</h4>
+                <p>繞境是為了掃除所經之處的瘟疫與邪氣。長長的隊伍蜿蜒穿過大街小巷，守護這片土地。</p>
+            </div>
+            <div class="clue-box">
+                <strong>結案：</strong> 這不僅是宗教活動，更是一場動員全鎮的文化嘉年華！
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>🕵️‍♂️ 柯南的總結報告：</p>
+        <p class="final-truth">「佳里金唐殿的魅力，真相只有一個——那就是集歷史、信仰、藝術與熱情於一身的文化瑰寶！」</p>
+    </footer>
+
+</div>
+
+<script>
+    // 互動頁籤切換功能
+    function openTab(evt, caseName) {
+        var i, tabContent, tabLinks;
+        
+        tabContent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabContent.length; i++) {
+            tabContent[i].classList.remove("active");
+        }
+        
+        tabLinks = document.getElementsByClassName("tab-link");
+        for (i = 0; i < tabLinks.length; i++) {
+            tabLinks[i].classList.remove("active");
+        }
+        
+        document.getElementById(caseName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+</script>
+
+</body>
+</html>
