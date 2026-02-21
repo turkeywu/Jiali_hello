@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金唐殿 x 超級英雄導覽</title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --gold: #f59e0b;
+            --red: #ef4444;
+            --text-white: #f1f5f9;
+        }
+
+        body {
+            font-family: 'Zen Maru Gothic', sans-serif;
+            background-color: var(--bg-dark);
+            /* 背景漫畫網點效果 */
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-white);
+            margin: 0;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 卡片設計 */
+        .card {
+            background: var(--card-bg);
+            border: 3px solid var(--gold);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 0 rgba(0,0,0,0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 0 rgba(0,0,0,0.5), 0 0 20px rgba(245, 158, 11, 0.4);
+            z-index: 10;
+        }
+
+        /* 圖片區 (使用 Placehold.co 佔位) */
+        .img-box {
+            width: 100%;
+            height: 300px;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+            opacity: 0.9;
+        }
+
+        .card:hover .img-box img {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        /* 漫畫對話氣泡 */
+        .bubble {
+            position: absolute;
+            top: 20px;
+            right: 15px;
+            background: #fff;
+            color: #000;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 0.9rem;
+            border: 3px solid #000;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: scale(0) rotate(10deg);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 5;
+            white-space: nowrap;
+        }
+
+        .bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 15px;
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: #000 transparent;
+        }
+
+        .card:hover .bubble {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* 內容區 */
+        .content {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .tag {
+            background: var(--red);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+
+        /* 頁尾 */
+        footer {
+            margin-top: 60px;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>佳里金唐殿</h1>
+    <p class="subtitle">HEROES TOUR: PROTECTING THE TEMPLE</p>
+
+    <div class="container">
+        
+        <div class="card">
+            <div class="bubble">這槌子跟千歲爺的一樣重！</div>
+            <div class="img-box">
+                <img src="https://placehold.co/600x600/16213e/FFF?text=索爾+%26+隊長\n(祭祀神明)" alt="祭祀神明">
+            </div>
+            <div class="content">
+                <span class="tag">Worship</span>
+                <h2>祭祀神明信仰</h2>
+                <p>導遊：<strong>雷神索爾 & 美國隊長</strong><br>主祀朱、雷、殷三府千歲，代天巡狩！這裡是蕭壠的信仰總部，威靈顯赫，守護鄉里三百餘年。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="bubble">這屋頂的結構...完美！</div>
+            <div class="img-box">
+                <img src="https://placehold.co/600x600/5b21b6/FFF?text=鋼鐵人+%26+蝙蝠俠\n(建築特色)" alt="建築特色">
+            </div>
+            <div class="content">
+                <span class="tag">Architecture</span>
+                <h2>中西合璧建築</h2>
+                <p>導遊：<strong>鋼鐵人 & 蝙蝠俠</strong><br>傳統閩南燕尾脊搭配西洋式牌樓！這種跨越東西方的建築美學，連史塔克都想掃描收藏。</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="bubble">找到隱藏彩蛋了！</div>
+            <div class="img-box">
+                <img src="https://placehold.co/600x600/064e3b/FFF?text=柯南+%26+浩克\n(藝術瑰寶)" alt="藝術瑰寶">
+            </div>
+            <div class="content">
+                <span class="tag">Art Treasures</span>
+                <h2>剪黏藝術瑰寶</h2>
+                <p>導遊：<strong>柯南 & 浩克</strong><br>大師何金龍的絕技！放大眼睛找找看，牆角竟然藏著穿西裝的「國父孫中山」，全台唯一！</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="bubble">出發！蜈蚣陣！</div>
+            <div class="img-box">
+                <img src="https://placehold.co/600x600/9a3412/FFF?text=水行俠+%26+金鋼狼\n(蜈蚣陣)" alt="蜈蚣陣">
+            </div>
+            <div class="content">
+                <span class="tag">World Record</span>
+                <h2>蕭壠香蜈蚣陣</h2>
+                <p>導遊：<strong>水行俠 & 金鋼狼</strong><br>金氏世界紀錄認證！由 108 位神童組成的全台最長「百足真人蜈蚣陣」，每三年一次的壯觀繞境。</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>JIALI DISTRICT TOUR GUIDE © 2026</p>
+    </footer>
+
+</body>
+</html>

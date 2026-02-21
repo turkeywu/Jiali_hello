@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蕭壟文化園區 - 熱血旅遊導覽</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --shohoku-red: #D32F2F;
+            --shohoku-black: #1a1a1a;
+            --basketball-orange: #FF9800;
+            --comic-yellow: #FFD700;
+            --paper-white: #fffdf5;
+        }
+
+        body {
+            font-family: 'Zen Maru Gothic', "Microsoft JhengHei", sans-serif;
+            background-color: var(--paper-white);
+            margin: 0;
+            padding: 0;
+            color: var(--shohoku-black);
+            background-image: radial-gradient(var(--shohoku-black) 1px, transparent 1px);
+            background-size: 20px 20px;
+            overflow-x: hidden;
+        }
+
+        /* --- Header --- */
+        header {
+            background: var(--shohoku-red);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom: 8px solid var(--shohoku-black);
+            position: relative;
+            box-shadow: 0 10px 0 rgba(0,0,0,0.2);
+            transform: skewY(-2deg);
+            margin-top: -2rem;
+            padding-top: 5rem;
+            margin-bottom: 3rem;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            text-shadow: 6px 6px 0px var(--shohoku-black);
+            font-weight: 900;
+            letter-spacing: 2px;
+            transform: skewY(2deg);
+        }
+
+        header p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--comic-yellow);
+            color: var(--shohoku-black);
+            display: inline-block;
+            padding: 10px 30px;
+            border: 3px solid var(--shohoku-black);
+            border-radius: 50px;
+            margin-top: 15px;
+            transform: skewY(2deg) rotate(-3deg);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+        }
+
+        /* --- Container --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- Grid Layout --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            padding: 20px;
+        }
+
+        /* --- Comic Card --- */
+        .card {
+            background: white;
+            border: 5px solid var(--shohoku-black);
+            border-radius: 15px;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.15);
+        }
+
+        .card:nth-child(odd) { transform: rotate(-1deg); }
+        .card:nth-child(even) { transform: rotate(1deg); }
+
+        .card:hover {
+            transform: scale(1.03) rotate(0deg) translateY(-10px);
+            box-shadow: 15px 15px 0px var(--shohoku-black);
+            z-index: 10;
+        }
+
+        /* Image Area - Modified for visibility */
+        .card-img {
+            width: 100%;
+            /* 修改 1：改為 1:1 正方形，給圖片更多空間 */
+            aspect-ratio: 1 / 1; 
+            background: #fff; /* 背景改白 */
+            border-bottom: 4px solid var(--shohoku-black);
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px 10px 0 0;
+            display: flex; /* 讓圖片置中 */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            /* 修改 2：改為 contain，確保完整顯示不裁切 */
+            object-fit: contain; 
+            transition: transform 0.5s;
+        }
+
+        .card:hover .card-img img {
+            transform: scale(1.05); /* 稍微縮小放大效果，避免字又被切到 */
+        }
+
+        /* Comic Badge */
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: var(--shohoku-red);
+            color: white;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            border: 3px solid var(--shohoku-black);
+            border-radius: 50%;
+            z-index: 5;
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+        }
+
+        /* Content */
+        .card-content {
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .card-title {
+            font-size: 1.6rem;
+            color: var(--shohoku-black);
+            margin: 0 0 10px 0;
+            font-weight: 900;
+        }
+
+        .card-desc {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+            font-weight: bold;
+        }
+
+        /* --- Speech Bubble --- */
+        .speech-bubble {
+            position: absolute;
+            bottom: 90%;
+            right: -10px;
+            background: white;
+            border: 3px solid var(--shohoku-black);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: 900;
+            color: var(--shohoku-red);
+            font-size: 1rem;
+            opacity: 0;
+            transform: scale(0) rotate(10deg);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+            z-index: 20;
+            white-space: nowrap;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: var(--shohoku-black) transparent;
+            display: block;
+            width: 0;
+        }
+
+        .card:hover .speech-bubble {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+            bottom: 105%;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+            background: var(--shohoku-black);
+            color: white;
+            font-size: 1.2rem;
+            border-top: 5px solid var(--basketball-orange);
+        }
+
+        /* RWD */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .gallery { grid-template-columns: 1fr; padding: 10px; }
+            .card:nth-child(n) { transform: rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>蕭壟文化園區</h1>
+        <p>SOULANGH CULTURAL PARK x SLAM DUNK</p>
+    </header>
+
+    <div class="container">
+        <div class="gallery">
+            
+            <div class="card">
+                <div class="badge">1</div>
+                <div class="card-img">
+                    <img src="sholon1.png" alt="西拉雅平埔文化館">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">西拉雅平埔文化館</h3>
+                    <p class="card-desc">櫻木與流川換上傳統服飾！一起探索西拉雅族的歷史智慧與祭典文化。</p>
+                    <div class="speech-bubble">我是天才原住民！</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="badge">2</div>
+                <div class="card-img">
+                    <img src="sholon2.png" alt="台南藝陣館">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">台南藝陣館</h3>
+                    <p class="card-desc">熱血沸騰！看赤木隊長舞弄獅頭，感受台灣最道地的廟會陣頭文化。</p>
+                    <div class="speech-bubble">稱霸全國的陣頭！</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="badge">3</div>
+                <div class="card-img">
+                    <img src="sholon3.png" alt="兒童美術館">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">兒童美術館</h3>
+                    <p class="card-desc">親子同樂天堂！晴子在球池玩耍，彩子揮灑創意彩繪，笑聲不斷。</p>
+                    <div class="speech-bubble">好可愛的畫作！</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="badge">4</div>
+                <div class="card-img">
+                    <img src="sholon4.png" alt="糖廠冰品部">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">糖廠冰品部</h3>
+                    <p class="card-desc">腦袋急凍！挑戰巨無霸糖廠冰山，看櫻木吃到頭痛的搞笑表情。</p>
+                    <div class="speech-bubble">頭...頭好痛！</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="badge">5</div>
+                <div class="card-img">
+                    <img src="sholon5.png" alt="戶外鐵道地景">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">戶外鐵道地景</h3>
+                    <p class="card-desc">懷舊五分車！湘北全體隊員在鐵道上的大合照，見證糖業黃金年代。</p>
+                    <div class="speech-bubble">快上車！要開了！</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="badge">6</div>
+                <div class="card-img">
+                    <img src="sholon6.png" alt="家具產業博物館">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">家具產業博物館</h3>
+                    <p class="card-desc">工藝與設計！流川楓在舒適的創意沙發上睡著了？體驗生活美學。</p>
+                    <div class="speech-bubble">Zzz...好舒服...</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>TAINAN SOULANGH GUIDE © 2026 | DESIGNED WITH PASSION</p>
+    </footer>
+
+</body>
+</html>
