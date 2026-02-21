@@ -102,7 +102,7 @@
             max-width: 1200px;
             margin: 0 auto 20px auto;
             padding: 0 20px;
-            display: none; /* 預設隱藏 */
+            display: none;
         }
 
         .back-btn {
@@ -133,7 +133,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
-            display: none; /* 預設隱藏所有區塊 */
+            display: none;
             animation: bounceIn 0.6s;
         }
 
@@ -153,7 +153,6 @@
             cursor: default;
         }
 
-        /* 讓分類卡片可以點擊 */
         .category-card {
             cursor: pointer;
         }
@@ -192,12 +191,12 @@
             transform: scale(1.05);
         }
 
-        /* Sticker */
+        /* Sticker - 修改此處將貼紙移至右上角 */
         .sticker {
             position: absolute;
             width: 90px;
             height: 90px;
-            bottom: -20px;
+            top: -20px; /* 原本是 bottom: -20px */
             right: -20px;
             z-index: 10;
             filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.5));
@@ -206,13 +205,13 @@
             border: 3px solid var(--shohoku-black);
             border-radius: 50%;
             overflow: hidden;
-            display: block; /* 確保 a 標籤有大小 */
-            cursor: pointer; /* 讓滑鼠變成手指 */
+            display: block;
+            cursor: pointer;
         }
         
         .sticker:hover {
             transform: scale(1.2) rotate(-10deg);
-            box-shadow: 0 0 15px rgba(255, 152, 0, 0.8); /* 增加發光效果提示可點擊 */
+            box-shadow: 0 0 15px rgba(255, 152, 0, 0.8);
         }
         
         .sticker img { width: 100%; height: 100%; object-fit: cover; }
@@ -559,40 +558,25 @@
     </footer>
 
     <script>
-        // 切換主選單 (熱血景點、美味進攻、名人堂)
         function showMainSection(sectionId, btn) {
-            // 隱藏所有 Grid
             document.querySelectorAll('.grid').forEach(el => el.classList.remove('active'));
-            // 隱藏麵包屑
             document.getElementById('breadcrumb').style.display = 'none';
-            // 顯示目標
             document.getElementById(sectionId).classList.add('active');
-            
-            // 處理按鈕狀態
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         }
 
-        // 進入名人堂子選單 (文學、政治、歷史列表)
         function showSubSection(subId) {
-            // 隱藏名人堂主分類頁
             document.getElementById('fame-root').classList.remove('active');
-            // 顯示目標子頁面
             document.getElementById(subId).classList.add('active');
-            // 顯示返回按鈕
             document.getElementById('breadcrumb').style.display = 'block';
         }
 
-        // 返回名人堂分類頁
         function backToFameRoot() {
-            // 隱藏所有子頁面
             document.getElementById('fame-literature').classList.remove('active');
             document.getElementById('fame-political').classList.remove('active');
             document.getElementById('fame-historical').classList.remove('active');
-            
-            // 顯示名人堂主頁
             document.getElementById('fame-root').classList.add('active');
-            // 隱藏返回按鈕
             document.getElementById('breadcrumb').style.display = 'none';
         }
     </script>
