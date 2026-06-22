@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暑假生活記趣：海濱之旅寫作教學</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Noto Sans TC', sans-serif; 
+            background: linear-gradient(180deg, #E0F2FE 0%, #FFF7ED 100%); 
+            min-height: 100vh;
+        }
+        .nav-link { 
+            transition: all 0.3s ease; 
+            border-left: 6px solid transparent; 
+        }
+        .nav-link.active { 
+            border-left-color: #0284C7; 
+            background-color: #E0F2FE; 
+            font-weight: 700; 
+            color: #0369A1; 
+        }
+        .essay-highlight { 
+            font-weight: 700; 
+            color: #0369A1; 
+            background-color: #E0F2FE; 
+            padding: 2px 6px; 
+            border-radius: 6px; 
+            border-bottom: 2px dashed #0EA5E9;
+        }
+        .chart-container { 
+            height: 320px; 
+            background: white; 
+            border-radius: 1.5rem; 
+            padding: 1.5rem; 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); 
+        }
+        .badge-amber {
+            background-color: #FEF3C7;
+            color: #D97706;
+        }
+        .badge-sky {
+            background-color: #E0F2FE;
+            color: #0369A1;
+        }
+        .badge-rose {
+            background-color: #FFE4E6;
+            color: #E11D48;
+        }
+        /* 椰子樹與太陽的背景微裝飾 */
+        .deco-sun {
+            background: radial-gradient(circle, #FDE047 0%, rgba(253,224,71,0) 70%);
+        }
+    </style>
+</head>
+<body class="text-gray-800 pb-12">
+
+    <div class="relative overflow-hidden bg-gradient-to-b from-sky-300 via-sky-100 to-transparent pt-12 pb-6 px-4">
+        <!-- 太陽背景微裝飾 -->
+        <div class="absolute top-4 right-10 w-32 h-32 deco-sun rounded-full opacity-60 pointer-events-none"></div>
+        <div class="absolute top-12 left-6 text-4xl opacity-20 select-none pointer-events-none">🌴</div>
+        <div class="absolute top-8 right-32 text-4xl opacity-20 select-none pointer-events-none">🐚</div>
+        
+        <header class="text-center max-w-4xl mx-auto relative z-10">
+            <span class="bg-amber-400 text-amber-950 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+                🏄‍♂️ 暑期寫作特輯 ‧ 記敘說明雙軌導引 🏖️
+            </span>
+            <h1 class="text-4xl md:text-5xl font-black text-sky-950 mt-4 tracking-tight drop-shadow-sm">
+                🌅 暑假生活記趣——難忘的海濱之旅
+            </h1>
+            <p class="mt-3 text-lg text-sky-800 font-medium">台南漁光島：清涼、安全與環保的交響樂章</p>
+        </header>
+    </div>
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            
+            <!-- 左側：階梯導覽列 -->
+            <div class="lg:col-span-1">
+                <div class="bg-white/90 backdrop-blur p-5 rounded-2xl shadow-xl border border-sky-100/50 sticky top-6">
+                    <h3 class="text-xl font-bold text-sky-950 mb-4 border-b pb-2 text-center flex items-center justify-center">
+                        <span>📋 寫作起承轉合</span>
+                    </h3>
+                    <nav id="nav-tabs" class="flex flex-col space-y-2">
+                        <!-- 由 JavaScript 動態生成導覽項目 -->
+                    </nav>
+                    <div class="mt-6 p-4 bg-sky-50 rounded-xl border border-sky-100 text-xs text-sky-900 leading-relaxed">
+                        <span class="font-bold block text-sm mb-1 text-sky-950">💡 說明文小叮嚀：</span>
+                        本篇記事不僅記錄「好玩」，更將<strong>「水域安全 (Law)」</strong>與<strong>「淨灘環保 (Green)」</strong>融入承轉結構中，讓記趣文章更有思想深度！
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右側：內容與素材百寶箱 -->
+            <div class="lg:col-span-3">
+                <main id="content-display" class="bg-white/95 backdrop-blur p-6 md:p-10 rounded-3xl shadow-xl border-t-8 border-sky-600 transition-all duration-300">
+                    
+                    <!-- 階段標題與目標 -->
+                    <div class="mb-6">
+                        <div id="section-step" class="time-tag bg-sky-600 text-white text-sm font-bold px-3 py-1 rounded-full inline-block mb-2"></div>
+                        <h2 id="section-title" class="text-3xl font-black text-sky-900"></h2>
+                        <p id="section-goal" class="text-base text-slate-500 mt-2 italic pl-1 border-l-4 border-amber-400"></p>
+                    </div>
+
+                    <!-- 寫作素材百寶箱 -->
+                    <div class="bg-amber-50/40 p-6 rounded-2xl mb-8 border border-amber-100 shadow-sm">
+                        <h3 class="text-xl font-black text-amber-950 mb-4 flex items-center">
+                            <span>🎁 本段寫作素材百寶箱</span>
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <!-- 推薦成語 (5句) -->
+                            <div>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-bold badge-amber block w-fit mb-2">📚 推薦精選成語 (5句)</span>
+                                <div id="box-idioms" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-amber-950 pl-1"></div>
+                            </div>
+                            
+                            <!-- 推薦佳句 (3句) -->
+                            <div class="border-t border-amber-100/50 pt-4">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-bold badge-sky block w-fit mb-2">✨ 推薦高分佳句 (3句)</span>
+                                <div id="box-quotes" class="space-y-2 text-sm text-sky-950 pl-1 leading-relaxed"></div>
+                            </div>
+
+                            <!-- 不同修辭例句 (3句) -->
+                            <div class="border-t border-amber-100/50 pt-4">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-bold badge-rose block w-fit mb-2">🎨 不同修辭例句 (3句)</span>
+                                <div id="box-rhetoric" class="space-y-2 text-sm text-rose-950 pl-1 leading-relaxed"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 範文區 -->
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-bold text-slate-800 mb-4 border-l-8 border-sky-600 pl-4">優秀範文示範</h3>
+                        <div id="narrative-text" class="bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200 shadow-inner text-justify whitespace-pre-wrap leading-loose text-lg"></div>
+                    </div>
+
+                    <!-- 教師叮嚀 -->
+                    <div id="tip-box" class="bg-amber-50 border-2 border-amber-200 p-6 rounded-2xl shadow-sm mb-8">
+                        <div class="flex items-start">
+                            <span class="text-3xl mr-4">💡</span>
+                            <div>
+                                <h4 class="text-lg font-bold text-amber-900 mb-1">老師的寫作小叮嚀</h4>
+                                <p id="tip-text" class="text-sm text-amber-950 leading-relaxed"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 圖表區 -->
+                    <div class="mt-8 pt-8 border-t border-slate-100">
+                        <h4 class="text-lg font-bold text-sky-950 mb-3 flex items-center justify-center">
+                            <span>🌊 旅程心靈能量與專注力起伏</span>
+                        </h4>
+                        <div class="chart-container">
+                            <canvas id="beachChart"></canvas>
+                        </div>
+                    </div>
+
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-5 right-5 bg-sky-800 text-white px-4 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-2 pointer-events-none transition-all duration-300 z-50 flex items-center gap-2">
+        <span>🏝️</span> <span id="toast-text"></span>
+    </div>
+
+    <script>
+        // 作文思考單內容庫
+        const essayContent = [
+            {
+                id: 'p1',
+                step: '第一段（起）：破題與期待',
+                title: '☀️ 期待：盛夏的蔚藍邀約',
+                goal: '點出炎炎夏日生活中最特別的活動，寫出出發當下期待、雀躍的心情。',
+                text: '　　放暑假了，<span class="essay-highlight">炎炎夏日</span>裡最令人期待的，莫過於和家人一起去海邊消暑。這個週末，爸爸媽媽帶著我來到台南美麗的漁光島。一路上，我望著車窗外，想像著海浪的呼喚，心裡就像裝了一隻<span class="essay-highlight">雀躍不已</span>的小鳥，<span class="essay-highlight">迫不及待</span>想馬上跳進清涼的海水裡。看著蔚藍的天空，高漲的興致早已將體感的熱氣一掃而空。',
+                idioms: [
+                    { word: '炎炎夏日', desc: '烈日當空的炎熱夏天。' },
+                    { word: '迫不及待', desc: '形容急切到不能再等待。' },
+                    { word: '雀躍不已', desc: '高興得像麻雀一樣跳躍，無法停下來。' },
+                    { word: '興致勃勃', desc: '興致極為高漲、積極。' },
+                    { word: '如願以償', desc: '滿足了自己的心願、償還了心願。' }
+                ],
+                quotes: [
+                    '「暑假是生活的空白頁，等著我們用最燦爛的色彩去填滿它。」',
+                    '「車窗外飛逝的風景，都在歌唱著對海濱之旅的熱切期待。」',
+                    '「炙熱的烈日擋不住出遊的興致，夏天的風早已吹進了我的心房。」'
+                ],
+                rhetoric: [
+                    { type: '譬喻', text: '心裡就像裝了一隻雀躍不已的小鳥，撲騰著翅膀想要飛向那片神祕的海洋。' },
+                    { type: '擬人', text: '夏日的陽光熱情地擁抱著大地，用溫暖的雙手催促我們趕緊出發。' },
+                    { type: '視覺摹寫', text: '車窗外是萬里無雲的晴空，亮晃晃的日光把公路兩旁的防風林鍍上了一層閃亮的金邊。' }
+                ],
+                tip: '開門見山法：先描寫暑假的炎熱，接著引出全家人前往漁光島的契機，並在第一段結尾清晰點出「迫不及待」的興奮心情，為下文戲水作好鋪陳。',
+                chartLabel: '期待與出發能量值',
+                chartData: [95, 20, 15, 30] // 期待值, 緊張度, 環保專注, 體能消耗
+            },
+            {
+                id: 'p2',
+                step: '第二段（承）：活動過程和情境',
+                title: '🌊 嬉戲：沁涼的海浪交響',
+                goal: '運用感官摹寫描述活動的情境（視覺、觸覺、聽覺）以及生動描寫過程，並帶出水域安全。',
+                text: '　　一踏上沙灘，<span class="essay-highlight">碧海藍天</span>的美景立刻映入眼簾，金黃色的沙子在陽光下閃閃發光，海風溫柔地拂過臉頰，帶來淡淡的鹹味。當我們換上泳裝準備下水時，爸爸一臉嚴肅地叮嚀：「欺山莫欺水，我們一定要在設有救生員的安全水域內遊玩，千萬不可以越過警戒線跑到深水區喔！」聽了爸爸的話，我們認真做足了暖身運動，才安心地踏入海水中。隨著波浪的起伏，我們開心地跳躍、戲水，冰涼的海水瞬間驅散了夏日的暑氣，耳邊充滿了全家人的<span class="essay-highlight">歡聲笑語</span>。',
+                idioms: [
+                    { word: '碧海藍天', desc: '形容海洋與天空蔚藍、遼闊的景色。' },
+                    { word: '心曠神怡', desc: '心情開朗，精神愉悅。' },
+                    { word: '水光瀲灩', desc: '形容水波流動、光彩耀眼的樣子。' },
+                    { word: '波光粼粼', desc: '波浪在陽光照耀下閃閃發光的樣子。' },
+                    { word: '歡聲笑語', desc: '歡樂的聲音與笑話，形容氣氛極其歡快。' }
+                ],
+                quotes: [
+                    '「蔚藍的海洋是一本讀不完的書，每一朵浪花都藏著夏天的故事。」',
+                    '「玩水固然開心，時刻保持警覺才能玩得平安又快樂。」',
+                    '「安全是所有快樂的底色，有了防護的堤防，歡樂的海浪才能盡情奔湧。」'
+                ],
+                rhetoric: [
+                    { type: '聽覺摹寫', text: '海浪「嘩啦嘩啦」地拍打著海岸，像是一支龐大的交響樂團在演奏著夏日狂想曲。' },
+                    { type: '觸覺摹寫', text: '冰涼的海水如同一塊巨大的絲綢，輕柔地拂過我的雙足，瞬間帶走了累積多時的暑氣。' },
+                    { type: '擬人', text: '海風溫柔地撫摸我的臉頰，在耳邊輕聲細語，訴說著遠方島嶼的神祕傳說。' }
+                ],
+                tip: '感官總動員：不要只寫「很好玩」，試著描寫海水的冰涼（觸覺）、浪濤的喧囂（聽覺）、以及海風帶來的鹹味（嗅覺）。同時，藉由長輩的叮嚀，自然融入水域安全的必備常識。',
+                chartLabel: '沙灘戲水體驗指數',
+                chartData: [85, 95, 20, 90] // 期待值, 緊張度（安全警覺）, 環保專注, 體能消耗
+            },
+            {
+                id: 'p3',
+                step: '第三段（轉）：特色事件和感受',
+                title: '🌅 轉折：夕陽下的環保手作',
+                goal: '細述活動過程中最特別的事件（傍晚晚霞、堆沙堡），並融入淨灘環保，寫下感受與印象。',
+                text: '　　到了傍晚，天邊漸漸染上了橘紅色的晚霞，<span class="essay-highlight">夕陽西下</span>將海面照得波光粼粼，猶如一幅美麗的水彩畫。我們在沙灘上堆起高高的沙堡，還幸運地看見幾隻小螃蟹<span class="essay-highlight">小心翼翼</span>地鑽進沙洞裡。準備回家前，媽媽遞給我一個大垃圾袋，我們全家分工合作，將周圍沙灘上的寶特瓶、塑膠袋等垃圾全部撿乾淨。因為維護海域的乾淨是每個人的責任，我們應該只留下美好的足跡，把垃圾帶走，讓美麗的海洋生物能有一個乾淨、安全的家。',
+                idioms: [
+                    { word: '夕陽西下', desc: '太陽快要落山，形容美麗的傍晚景色。' },
+                    { word: '小心翼翼', desc: '形容舉動十分謹慎，不敢絲毫疏忽。' },
+                    { word: '分工合作', desc: '大家各自分工，互相配合，完成任務。' },
+                    { word: '舉手之勞', desc: '輕而易舉就能做到的事，常用於形容環保。' },
+                    { word: '回歸純淨', desc: '將原本乾淨無瑕的自然面貌，再次還給大自然。' }
+                ],
+                quotes: [
+                    '「大自然是我們最棒的遊樂場，我們應該只留下美麗的足跡，不留下任何一片垃圾。」',
+                    '「維護海域的乾淨是每一個人的責任，少一個塑膠袋，海洋生態就多一份安全。」',
+                    '「最美的風景不在小小的螢幕裡，而是在我們與自然和諧共處的溫暖行動中。」'
+                ],
+                rhetoric: [
+                    { type: '譬喻', text: '天邊漸漸染上了橘紅色的晚霞，海面上的浪花就像一群穿著白裙的小精靈在金色舞台上跳舞。' },
+                    { type: '視覺摹寫', text: '夕陽宛如一個巨大的紅橘色火球，緩緩西沉，將半邊天空與波光粼粼的海面染得金碧輝煌。' },
+                    { type: '擬人', text: '當我們把不屬於沙灘的垃圾帶走，重獲純淨的大海彷彿也露出了寬慰而美麗的笑容。' }
+                ],
+                tip: '以退為進與主題深化：除了寫大自然的美景與堆沙堡的樂趣，本段的「轉折」在於加入了「淨灘環保」的真實行動，這能讓你的遊記從單純的娛樂，昇華為關懷環境的深度好文。',
+                chartLabel: '傍晚環保與景致感受度',
+                chartData: [60, 40, 95, 50] // 期待值, 緊張度, 環保專注, 體能消耗
+            },
+            {
+                id: 'p4',
+                step: '第四段（合）：總結與反思',
+                title: '🎒 收穫：滿載而歸的扉頁',
+                goal: '總結這一天的收穫（玩得開心、學到安全、做到環保），點出這是暑假中最美好的一頁。',
+                text: '　　這次的海邊之旅，不但讓我享受了<span class="essay-highlight">乘風破浪</span>的樂趣，更讓我學到了重要的水域安全知識與環保觀念。伴隨著夕陽的餘暉，我們一家人<span class="essay-highlight">滿載而歸</span>。這充實又美好的一天，絕對是我今年暑假生活中最燦爛、最難忘的一頁記趣！',
+                idioms: [
+                    { word: '滿載而歸', desc: '裝得滿滿的回家，比喻收穫極為豐厚。' },
+                    { word: '乘風破浪', desc: '比喻不怕困難，奮勇前進（此處亦指在浪花中玩耍）。' },
+                    { word: '獲益匪淺', desc: '得到極多的收穫與教益。' },
+                    { word: '意猶未盡', desc: '活動結束了，但餘興未盡，還想繼續。' },
+                    { word: '刻骨銘心', desc: '形容記憶極深，終身難忘。' }
+                ],
+                quotes: [
+                    '「炙熱的太陽、清涼的海水與家人的笑聲，交織成我暑假中最燦爛的一頁篇章。」',
+                    '「最棒的旅行，是帶著敬畏大自然的心出發，裝滿安全與責任的回憶回家。」',
+                    '「成長的印記往往藏在泥沙與浪花中，每一次的體悟都讓我們更懂得守護美麗的世界。」'
+                ],
+                rhetoric: [
+                    { type: '譬喻', text: '這次充實又美好的一天，就像一枚閃亮的貝殼，將永遠珍藏在我暑假回憶的百寶箱裡。' },
+                    { type: '排比', text: '清涼的海水洗去了夏日的焦躁，溫馨的笑聲拉近了家人的心靈，環保的行動淨化了美麗的沙灘。' },
+                    { type: '擬人', text: '月亮悄悄爬上樹梢向我們揮手告別，而潮汐依舊低聲吟唱，像是在跟我們約定下一次的相聚。' }
+                ],
+                tip: '首尾呼應法：總結這趟旅程帶來的精神收穫——「安全、環保、快樂」，並運用抒情的譬喻修辭，將一天的美好點綴成暑假回憶中最燦爛的扉頁，讓文章結構完美收尾。',
+                chartLabel: '總結收穫與完美收尾',
+                chartData: [40, 10, 80, 20] // 期待值, 緊張度, 環保專注, 體能消耗
+            }
+        ];
+
+        let chartInstance = null;
+
+        function updateToast(text) {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toast-text');
+            toastText.textContent = text;
+            toast.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }, 3000);
+        }
+
+        function renderChart(data) {
+            const ctx = document.getElementById('beachChart').getContext('2d');
+            if (chartInstance) chartInstance.destroy();
+
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['期待雀躍值 (%)', '水域安全警覺 (%)', '環保淨灘專注 (%)', '體能消耗值 (%)'],
+                    datasets: [{
+                        label: data.chartLabel,
+                        data: data.chartData,
+                        backgroundColor: [
+                            'rgba(245, 158, 11, 0.75)', // Amber
+                            'rgba(14, 165, 233, 0.75)',  // Sky
+                            'rgba(16, 185, 129, 0.75)',  // Emerald
+                            'rgba(244, 63, 94, 0.75)'    // Rose
+                        ],
+                        borderColor: [
+                            '#D97706',
+                            '#0284C7',
+                            '#059669',
+                            '#E11D48'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: '#F1F5F9' },
+                            ticks: { color: '#475569', font: { family: "'Noto Sans TC'" } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#1E293B', font: { family: "'Noto Sans TC'", weight: 'bold' } }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#0F172A',
+                            titleFont: { family: "'Noto Sans TC'" },
+                            bodyFont: { family: "'Noto Sans TC'" }
+                        }
+                    }
+                }
+            });
+        }
+
+        function render(id) {
+            const data = essayContent.find(p => p.id === id);
+            if (!data) return;
+
+            // 基本資訊
+            document.getElementById('section-step').textContent = data.step;
+            document.getElementById('section-title').textContent = data.title;
+            document.getElementById('section-goal').textContent = data.goal;
+            document.getElementById('narrative-text').innerHTML = data.text;
+            document.getElementById('tip-text').textContent = data.tip;
+
+            // 渲染 5 句成語
+            const idiomsHtml = data.idioms.map(i => `
+                <div class="bg-white/80 p-3 rounded-lg border border-amber-100 hover:border-amber-300 transition duration-200">
+                    <span class="font-bold text-amber-900 text-sm block">✨ ${i.word}</span>
+                    <span class="text-xs text-amber-700/90 mt-0.5 block">${i.desc}</span>
+                </div>
+            `).join('');
+            document.getElementById('box-idioms').innerHTML = idiomsHtml;
+
+            // 渲染 3 句佳句
+            const quotesHtml = data.quotes.map(q => `
+                <div class="flex items-start gap-2 py-1">
+                    <span class="text-sky-500 mt-1">✦</span>
+                    <p class="text-sky-950 font-medium">${q}</p>
+                </div>
+            `).join('');
+            document.getElementById('box-quotes').innerHTML = quotesHtml;
+
+            // 渲染 3 句修辭
+            const rhetoricHtml = data.rhetoric.map(r => `
+                <div class="flex flex-col md:flex-row md:items-center gap-1 md:gap-3 py-1.5 border-b border-rose-100/30 last:border-0">
+                    <span class="px-2 py-0.5 rounded text-xs font-bold bg-rose-100 text-rose-800 w-fit shrink-0">【${r.type}】</span>
+                    <p class="text-rose-900 italic font-medium">${r.text}</p>
+                </div>
+            `).join('');
+            document.getElementById('box-rhetoric').innerHTML = rhetoricHtml;
+
+            // 渲染圖表
+            renderChart(data);
+        }
+
+        function init() {
+            const nav = document.getElementById('nav-tabs');
+            const icons = { p1: '🌅', p2: '🌊', p3: '🐚', p4: '🎒' };
+
+            essayContent.forEach(p => {
+                const btn = document.createElement('a');
+                btn.href = "#";
+                btn.className = "nav-link py-3 px-4 text-slate-700 rounded-xl hover:bg-sky-50 flex items-center mb-1 text-sm md:text-base";
+                btn.setAttribute('data-target', p.id);
+                btn.innerHTML = `<span class="mr-2 text-lg">${icons[p.id]}</span> ${p.title.split('：')[1] || p.title}`;
+                
+                btn.onclick = (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    btn.classList.add('active');
+                    render(p.id);
+                    updateToast(`已載入：${p.title}`);
+                };
+                nav.appendChild(btn);
+            });
+            
+            // 預設選取第一段
+            const firstTab = nav.querySelector('.nav-link');
+            if (firstTab) {
+                firstTab.click();
+            }
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
