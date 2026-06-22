@@ -110,11 +110,17 @@
 
                     <!-- 寫作素材百寶箱 -->
                     <div class="bg-amber-50/40 p-6 rounded-2xl mb-8 border border-amber-100 shadow-sm">
-                        <h3 class="text-xl font-black text-amber-950 mb-4 flex items-center">
+                        <h3 class="text-2xl font-black text-amber-950 mb-4 flex items-center">
                             <span>🎁 本段寫作素材百寶箱</span>
                         </h3>
                         
                         <div class="space-y-6">
+                            <!-- 推薦句型 -->
+                            <div>
+                                <span class="px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-100 text-indigo-800 block w-fit mb-2">🎯 推薦句型</span>
+                                <div id="box-sentences" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-indigo-950 pl-1"></div>
+                            </div>
+
                             <!-- 推薦成語 (5句) -->
                             <div>
                                 <span class="px-2.5 py-1 rounded-md text-xs font-bold badge-amber block w-fit mb-2">📚 推薦精選成語 (5句)</span>
@@ -180,6 +186,10 @@
                 title: '☀️ 期待：盛夏的蔚藍邀約',
                 goal: '點出炎炎夏日生活中最特別的活動，寫出出發當下期待、雀躍的心情。',
                 text: '　　放暑假了，<span class="essay-highlight">炎炎夏日</span>裡最令人期待的，莫過於和家人一起去海邊消暑。這個週末，爸爸媽媽帶著我來到台南美麗的漁光島。一路上，我望著車窗外，想像著海浪的呼喚，心裡就像裝了一隻<span class="essay-highlight">雀躍不已</span>的小鳥，<span class="essay-highlight">迫不及待</span>想馬上跳進清涼的海水裡。看著蔚藍的天空，高漲的興致早已將體感的熱氣一掃而空。',
+                sentences: [
+                    { pattern: '【因果句型】一……就……', example: '一路上，我一想到波光粼粼的漁光島，心裡就雀躍不已。' },
+                    { pattern: '【遞進句型】不僅……更……', example: '放暑假不僅是課業的暫停，更是探索美麗大自然的起點。' }
+                ],
                 idioms: [
                     { word: '炎炎夏日', desc: '烈日當空的炎熱夏天。' },
                     { word: '迫不及待', desc: '形容急切到不能再等待。' },
@@ -203,16 +213,16 @@
             },
             {
                 id: 'p2',
-                step: '第二段（承）：活動過程和情境',
+                step: '第二段（承）：活動過程 and 情境',
                 title: '🌊 嬉戲：沁涼的海浪交響',
                 goal: '運用感官摹寫描述活動的情境（視覺、觸覺、聽覺）以及生動描寫過程，並帶出水域安全。',
                 text: '　　一踏上沙灘，<span class="essay-highlight">碧海藍天</span>的美景立刻映入眼簾，金黃色的沙子在陽光下閃閃發光，海風溫柔地拂過臉頰，帶來淡淡的鹹味。當我們換上泳裝準備下水時，爸爸一臉嚴肅地叮嚀：「欺山莫欺水，我們一定要在設有救生員的安全水域內遊玩，千萬不可以越過警戒線跑到深水區喔！」聽了爸爸的話，我們認真做足了暖身運動，才安心地踏入海水中。隨著波浪的起伏，我們開心地跳躍、戲水，冰涼的海水瞬間驅散了夏日的暑氣，耳邊充滿了全家人的<span class="essay-highlight">歡聲笑語</span>。',
+                sentences: [
+                    { pattern: '【排比句型】有的……有的……還有的……', example: '沙灘上熱鬧非凡，有的人在打沙灘排球，有的人在堆沙堡，還有的在海水中乘風破浪。' },
+                    { pattern: '【假設句型】如果……就……', example: '如果沒有確實做好足夠的暖身運動，我們就不應該貿然踏入海水中嬉戲。' }
+                ],
                 idioms: [
-                    { word: '碧海藍天', desc: '形容海洋與天空蔚藍、遼闊的景色。' },
-                    { word: '心曠神怡', desc: '心情開朗，精神愉悅。' },
-                    { word: '水光瀲灩', desc: '形容水波流動、光彩耀眼的樣子。' },
-                    { word: '波光粼粼', desc: '波浪在陽光照耀下閃閃發光的樣子。' },
-                    { word: '歡聲笑語', desc: '歡樂的聲音與笑話，形容氣氛極其歡快。' }
+                    { word: '碧海藍天', desc: '形容海洋與天空蔚藍、遼確的景色。' },
                 ],
                 quotes: [
                     '「蔚藍的海洋是一本讀不完的書，每一朵浪花都藏著夏天的故事。」',
@@ -234,6 +244,10 @@
                 title: '🌅 轉折：夕陽下的環保手作',
                 goal: '細述活動過程中最特別的事件（傍晚晚霞、堆沙堡），並融入淨灘環保，寫下感受與印象。',
                 text: '　　到了傍晚，天邊漸漸染上了橘紅色的晚霞，<span class="essay-highlight">夕陽西下</span>將海面照得波光粼粼，猶如一幅美麗的水彩畫。我們在沙灘上堆起高高的沙堡，還幸運地看見幾隻小螃蟹<span class="essay-highlight">小心翼翼</span>地鑽進沙洞裡。準備回家前，媽媽遞給我一個大垃圾袋，我們全家分工合作，將周圍沙灘上的寶特瓶、塑膠袋等垃圾全部撿乾淨。因為維護海域的乾淨是每個人的責任，我們應該只留下美好的足跡，把垃圾帶走，讓美麗的海洋生物能有一個乾淨、安全的家。',
+                sentences: [
+                    { pattern: '【時間關係句型】當……時候，……', example: '當夕陽漸漸沉入海面時，我們全家分工合作，將周圍沙灘上的垃圾清理乾淨。' },
+                    { pattern: '【因果句型】因為……所以……', example: '因為維護海域的乾淨是每個人的責任，所以我們應該主動把垃圾帶走。' }
+                ],
                 idioms: [
                     { word: '夕陽西下', desc: '太陽快要落山，形容美麗的傍晚景色。' },
                     { word: '小心翼翼', desc: '形容舉動十分謹慎，不敢絲毫疏忽。' },
@@ -261,6 +275,10 @@
                 title: '🎒 收穫：滿載而歸的扉頁',
                 goal: '總結這一天的收穫（玩得開心、學到安全、做到環保），點出這是暑假中最美好的一頁。',
                 text: '　　這次的海邊之旅，不但讓我享受了<span class="essay-highlight">乘風破浪</span>的樂趣，更讓我學到了重要的水域安全知識與環保觀念。伴隨著夕陽的餘暉，我們一家人<span class="essay-highlight">滿載而歸</span>。這充實又美好的一天，絕對是我今年暑假生活中最燦爛、最難忘的一頁記趣！',
+                sentences: [
+                    { pattern: '【條件句型】只有……才能……', example: '只有確實遵守水域安全規定，我們才能玩得安心又盡興。' },
+                    { pattern: '【遞進句型】不但……更……', example: '這次出遊不但讓我消暑解渴，更讓我體會到保護海洋環境的重要性。' }
+                ],
                 idioms: [
                     { word: '滿載而歸', desc: '裝得滿滿的回家，比喻收穫極為豐厚。' },
                     { word: '乘風破浪', desc: '比喻不怕困難，奮勇前進（此處亦指在浪花中玩耍）。' },
@@ -362,6 +380,15 @@
             document.getElementById('section-goal').textContent = data.goal;
             document.getElementById('narrative-text').innerHTML = data.text;
             document.getElementById('tip-text').textContent = data.tip;
+
+            // 渲染推薦句型
+            const sentencesHtml = data.sentences.map(s => `
+                <div class="bg-indigo-50/60 p-3 rounded-lg border border-indigo-100/80 hover:border-indigo-300 transition duration-200">
+                    <span class="font-bold text-indigo-950 text-sm block">✨ ${s.pattern}</span>
+                    <span class="text-xs text-indigo-800 mt-1 block italic">${s.example}</span>
+                </div>
+            `).join('');
+            document.getElementById('box-sentences').innerHTML = sentencesHtml;
 
             // 渲染 5 句成語
             const idiomsHtml = data.idioms.map(i => `
